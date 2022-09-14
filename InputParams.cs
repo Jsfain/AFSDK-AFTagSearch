@@ -75,16 +75,20 @@ namespace AFInputParams
     }
 
     // -------------------------------------------------------------------------
-    // Set properties of class instance by parsing arguments in a string array.
+    // This constructor first sets the properties of the class to the default
+    // constructor values then updates any properties of class instance passed 
+    // in via the string array by parsing arguments in the string array.
     // This is primarily meant for passing in arguments from the console when 
     // executing a using program. This constructor also collects a list of 
     // invalid arguemts that may have been provided, which the calling program 
-    // can print to screen/file. 
+    // can use, e.g. handle issues with incorrect argumnets or print to 
+    // screen/file for informational purposes.
     // -------------------------------------------------------------------------
     public InputParams(
-        ref string[] args, 
-        ref List<string> invalid)
-    {            
+        in string[] args, 
+        ref List<string> invalid) : this()
+    {     
+      // loop to assign additional InputParam property vals
       for (int ndx = 0; ndx < args.Length; ++ndx)
       {
         switch (args[ndx])
